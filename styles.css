@@ -1,0 +1,33 @@
+body {
+    background-color: #038763;
+}
+
+#header_top {
+    display: inline;
+}
+
+#header_top ul {
+    text-align: right;
+}
+
+#header_top ul li{
+    display: inline;
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+#header_main {
+    text-align: center;
+}
+
+#header_logo {
+    display: block;
+}
+
+#bottom_header ul{
+    text-align: center;
+}
+
+#bottom_header ul li{
+    padding-right: 10px;
+}
