@@ -1,0 +1,28 @@
+{
+  "name": "fantastshirts",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ../server.js"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tristanbrewee/Fantastshirts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tristanbrewee/Fantastshirts/issues"
+  },
+  "homepage": "https://github.com/tristanbrewee/Fantastshirts#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.16.2"
+  }
+}
