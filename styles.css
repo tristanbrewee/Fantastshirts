@@ -1,9 +1,11 @@
-body {
-    background-color: #038763;
-}
+/*body {*/
+/*    background-color: #038763;*/
+/*}*/
 
 #header_top {
     display: inline;
+    font-size: 20px;
+    font-family: 'Cinzel', serif;
 }
 
 #header_top ul {
@@ -12,22 +14,222 @@ body {
 
 #header_top ul li{
     display: inline;
-    font-size: 20px;
     padding-right: 10px;
+    padding-bottom: 10px;
+    color: #8f6b2e;
 }
 
-#header_main {
-    text-align: center;
+#header_top ul li a{
+    color: #8f6b2e;
+    text-decoration: none;
 }
+
+#header_top ul li a:hover{
+    color: #c9a24d;
+}
+
+/*#header_main {*/
+/*    text-align: center;*/
+/*}*/
 
 #header_logo {
+    text-align: center;
     display: block;
+}
+#header_logo img {
+    width: 50%;
+    height: 50%;
+}
+
+#bottom_header {
+    padding-bottom: 20px;
 }
 
 #bottom_header ul{
     text-align: center;
+    font-size: 20px;
+    font-family: 'Cinzel', serif;
 }
 
 #bottom_header ul li{
+    display: inline;
     padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
+
+#bottom_header ul li a{
+    color: #8f6b2e;
+    text-decoration: none;
+    color: #b8aa7a;
+}
+
+#bottom_header ul li a:hover{
+    color: #c9a24d;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap');:root {
+    --bg-dark: #14120f;
+    --bg-mid: #1f1b16;
+    --parchment: #2a241c;
+    --card: #2f2a23;
+    --accent: #c9a24d;
+    --accent-glow: rgba(201,162,77,0.6);
+    --text: #f3efe4;
+    --muted: #b8aa7a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background:
+            repeating-linear-gradient(
+                    45deg,
+                    rgba(255,255,255,0.02) 0px,
+                    rgba(255,255,255,0.02) 2px,
+                    rgba(0,0,0,0.02) 4px
+            ),
+            radial-gradient(circle at top, #2b261f, var(--bg-dark));
+    color: var(--text);
+    padding: 2rem;
+}
+
+header {
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+header h1 {
+    font-size: 2.4rem;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-shadow: 0 0 15px rgba(201,162,77,0.25);
+}
+
+header input {
+    padding: 0.6rem 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid #5c4a2c;
+    background: var(--parchment);
+    color: var(--text);
+}
+
+.grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.8rem;
+}
+
+.card {
+    position: relative;
+    background: linear-gradient(180deg, #332d25, #26221c);
+    border-radius: 1.2rem;
+    border: 1px solid rgba(201,162,77,0.25);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.7);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+            radial-gradient(circle at 30% 30%, rgba(201,162,77,0.15), transparent 40%),
+            radial-gradient(circle at 70% 70%, rgba(201,162,77,0.1), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+            0 0 25px var(--accent-glow),
+            0 35px 70px rgba(0,0,0,0.85);
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background: #1a1814;
+    filter: contrast(1.05) saturate(0.9);
+}
+
+.card-body {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background:
+            linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.25));
+}
+
+.card-body h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+    text-shadow: 0 0 8px rgba(201,162,77,0.25);
+}
+
+.card-body p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+    flex: 1;
+}
+
+.price {
+    font-weight: bold;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+}
+
+.card button {
+    background: linear-gradient(180deg, var(--accent), #8f6b2e);
+    color: #1b1a17;
+    border: none;
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 rgba(201,162,77,0);
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.card button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px rgba(201,162,77,0.6);
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
