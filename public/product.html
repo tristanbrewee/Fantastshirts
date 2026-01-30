@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fantas-T-Shirts: product</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="index.js" defer></script>
+    <script type="text/javascript" src="product.js" defer></script>
+</head>
+<body>
+<div id="header_top">
+    <ul>
+        <li href="/login.html"><a href="/login.thml">Login</a></li>
+        <li href="/contact.html"><a href="/contact.thml">Contact</a></li>
+        <li href="/languages"><a href="/language.thml">Language</a></li>
+        <li href="/my_account"><a href="/account.thml">My Account</a></li>
+    </ul>
+</div>
+<header>
+    <h1><a href="/index.html">Fantas-T-Shirts</a></h1>
+    <input type="text" id="search" placeholder="Search…" />
+</header>
+<div id="header_logo">
+    <img src="img/Adobe Express - file.png" alt="Fantas-T-Shirts Logo" >
+</div>
+
+<main class="product-page">
+
+    <div class="product-preview">
+        <div class="shirt-wrapper">
+            <img
+                    id="shirtBase"
+                    src="img/shirt_black_front.png"
+                    alt="T-shirt base"
+            />
+
+            <img
+                    id="shirtPrint"
+                    src=""
+                    alt="Print overlay"
+            />
+        </div>
+    </div>
+
+    <div class="product-options">
+
+        <!-- 🔘 KLEUR -->
+        <fieldset>
+            <legend>Kleur</legend>
+
+            <label>
+                <input type="radio" name="color" value="black" checked>
+                Zwart
+            </label>
+
+            <label>
+                <input type="radio" name="color" value="white">
+                Wit
+            </label>
+
+            <label>
+                <input type="radio" name="color" value="red">
+                Rood
+            </label>
+        </fieldset>
+
+        <!-- 🔘 ZIJDE -->
+        <fieldset>
+            <legend>Print zijde</legend>
+
+            <label>
+                <input type="radio" name="side" value="front" checked>
+                Voorzijde
+            </label>
+
+            <label>
+                <input type="radio" name="side" value="back">
+                Achterzijde
+            </label>
+        </fieldset>
+
+        <!-- 🔲 DESIGN -->
+        <div class="design-buttons">
+            <button type="button" data-print="skull">Skull</button>
+            <button type="button" data-print="dragon">Dragon</button>
+            <button type="button" data-print="runes">Runes</button>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    © 2026 – Brewee Tristan
+</footer>
+</body>
+</html>

@@ -2,7 +2,46 @@ console.log("JS BESTAND GELADEN");
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    fetch("/data")
+    // 🔹 tag uit pagina-URL halen (?tag=osrs)
+    const params = new URLSearchParams(window.location.search);
+    const tags = params.get("tags");
+    const id = params.get("id");
+
+    const url = tags ? `/data?tags=${encodeURIComponent(tags)}` : "/data";
+
+    const input = document.getElementById("search");
+
+    document.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-id]");
+        if (!btn) return;
+
+        const id = btn.dataset.id;
+        window.location.href = `product.html?id=${id}`;
+    });
+
+    input.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            const words = input.value
+                .trim()
+                .toLowerCase()
+                .split(/\s+/)
+                .filter(Boolean);
+
+            if (words.length === 0) return;
+
+            window.location.href =
+                `/?tags=${encodeURIComponent(words.join(","))}`;
+        }
+    });
+
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("view-btn")) {
+            const id = e.target.dataset.id;
+            window.location.href = `product.html?id=${id}`;
+        }
+    });
+
+    fetch(url)
         .then(r => r.json())
         .then(data => {
 
@@ -13,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            if (data.length === 0) {
+            if (!data || data.length === 0) {
                 grid.innerHTML = "<p>Geen data gevonden</p>";
                 return;
             }
@@ -21,9 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let html = "";
 
             data.forEach(item => {
-
-                // tags zijn een string → gewoon tonen
-                const tags = item.tags ? item.tags : "";
+                const tags = item.tags ?? "";
 
                 html += `
                     <div class="card">
@@ -32,15 +69,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             <h2>${item.filename}</h2>
                             <p>${tags}</p>
                             <div class="price"></div>
-                            <button>Naar product pagina</button>
+                            <button data-id="${item.id}">To product page</button>
                         </div>
                     </div>
                 `;
             });
 
-            // 👇 DIT WAS DE BELANGRIJKSTE REGEL
             grid.innerHTML = html;
-
         })
         .catch(err => console.error("Fetch fout:", err));
 

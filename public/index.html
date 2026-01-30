@@ -18,29 +18,32 @@
         </ul>
     </div>
         <header>
-            <h1>Fantas-T-Shirts</h1>
-            <input type="text" placeholder="Zoeken…" />
+            <h1><a href="/?tags=">Fantas-T-Shirts</a></h1>
+            <input type="text" id="search" placeholder="Search…" />
         </header>
     <div id="header_logo">
         <img src="img/Adobe Express - file.png" alt="Fantas-T-Shirts Logo" >
     </div>
     <div id="bottom_header">
         <ul>
-            <li><a href="harry_potter.html">HarryPotter</a></li>
-            <li><a href="the_lord_of_the_rings.html">The Lord of the Rings</a></li>
-            <li><a href="spongebob_squarepants.html">Spongebob Squarepants</a></li>
-            <li><a href="world_of_warcraft.html">World of Warcraft</a></li>
-            <li><a href="oldschool_runescape.html">Oldschool Runescape</a></li>
+            <li><a href="/?tags=">All</a></li>
+            <li><a href="/?tags=harry_potter">HarryPotter</a></li>
+            <li><a href="/?tags=lotr">The Lord of the Rings</a></li>
+            <li><a href="/?tags=wow">World of Warcraft</a></li>
+            <li><a href="/?tags=osrs">Oldschool Runescape</a></li>
+            <li><a href="/?tags=spongebob">Spongebob</a></li>
         </ul>
     </div>
         <section class="grid" id="imagelist">
             <div class="card">
-                <img src="" alt="Product" />
+                <img src="${item.path}" alt="${item.filename}">
                 <div class="card-body">
-                    <h2></h2>
-                    <p>Korte beschrijving van dit product.</p>
-                    <div class="price">€19,99</div>
-                    <button>In winkelmand</button>
+                    <h2>${item.filename}</h2>
+                    <p>${tags}</p>
+                    <div class="price"></div>
+                    <button type="button" class="view-btn" data-id="${item.id}">
+                        To product page
+                    </button>
                 </div>
             </div>
         </section><footer>
