@@ -293,3 +293,107 @@ footer {
     pointer-events: none;
     z-index: 10;
 }
+
+.box {
+    float: left;
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+    clear: both;
+}
+
+.zwart {
+    background-color: black;
+}
+
+.bourgondisch_rood {
+    background-color: #822c44;
+}
+
+.chocolade_bruin {
+    background-color: #a37963;
+}
+
+.diva_blauw {
+    background-color: #3a999c;
+}
+
+.donker_grijs {
+    background-color: #636363;
+}
+
+.flessen_rood {
+    background-color: #0b5704;
+}
+
+.hemels_blauw {
+    background-color: #6ebbc6;
+}
+
+.kelly_green {
+    background-color: #38ba4d;
+}
+
+.konings_blauw {
+    background-color: #4569b6;
+}
+
+.milenial_munt {
+    background-color: #a4d3bd;
+}
+
+.natuurlijk {
+    background-color: #bab6b6;
+}
+
+.navy {
+    background-color: #042649;
+}
+
+.oranje {
+    background-color: #ff8800;
+}
+
+.orchidee_groen {
+    background-color: #67cf28;
+}
+
+.orchidee_roze {
+    background-color: #e3bcbc;
+}
+
+.pacific_grijs {
+    background-color: #d1d1d1;
+}
+
+.rood {
+    background-color: #c50404;
+}
+
+.sorbet_rood {
+    background-color: #da5151;
+}
+
+.sport_grijs {
+    background-color: #aaa9a9;
+}
+
+.steen_blauw {
+    background-color: #6091a8;
+}
+
+.urban_kaki {
+    background-color: #134e13;
+}
+
+.urban_paars {
+    background-color: #511498;
+}
+
+.wit {
+    background-color: #ffffff;
+}
+
+.zonne_geel {
+    background-color: #e8e52c;
+}

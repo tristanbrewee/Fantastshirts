@@ -3,11 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const base = document.getElementById("shirtBase");
     const print = document.getElementById("shirtPrint");
 
-    if (!base || !print) return;
+    if (!base || !print) {
+        console.error("Base of print image ontbreekt in DOM");
+        return;
+    }
 
+    // ✅ ID UIT URL HALEN — DIT MOET EERST
     const params = new URLSearchParams(window.location.search);
-    const imageId = params.get("id");
+    const productId = params.get("id");
 
+    console.log("URL productId =", productId);
 
     if (!productId) {
         console.error("Geen product ID in URL");
@@ -15,33 +20,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const state = {
-        color: "black",
+        color: "zwart",
         side: "front",
         print: null
     };
 
     function updateBase() {
-        base.src = `/img/shirt_${state.color}_${state.side}.png`;
+        base.src = `/shirts/shirt_${state.color}_${state.side}.png`;
     }
 
-    function updatePrint() {
-        if (!state.print) return;
+    updateBase();
 
-        // express.static("public")
+    function updatePrint() {
+        if (!state.print) {
+            console.error("Geen print path in state");
+            return;
+        }
+
+        console.log("STATE.PRINT =", state.print);
         print.src = `/${state.print}`;
     }
 
-    // 🔹 Product ophalen uit DB
-    fetch(`/images/${imageId}`)
+    // 🔹 IMAGE OPHALEN UIT DB
+    fetch(`/images/${productId}`)
         .then(res => {
             if (!res.ok) throw new Error("HTTP " + res.status);
             return res.json();
         })
         .then(image => {
-            console.log("Image uit DB:", image);
+            console.log("IMAGE UIT DB =", image);
 
-            // 🔥 HIER komt je overlay vandaan
-            state.print = image.path;
+            state.print = image.path; // bv "img/skull.png"
             updatePrint();
         })
         .catch(err => {
