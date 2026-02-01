@@ -15,8 +15,8 @@ async function startServer() {
 
     const db = await mysql.createConnection({
         host: "localhost",
-        user: "root",          // pas aan
-        password: "root",          // pas aan
+        user: process.env.DB_USER,          // pas aan
+        password: process.env.DB_PASS,          // pas aan
         database: "image_store"
     });
 
