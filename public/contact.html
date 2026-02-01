@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Fantas-T-Shirts</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="jquery.js" defer></script>
+    <script type="text/javascript" src="contact.js" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+<div id="header_top">
+    <ul>
+        <li href="/login.html"><a href="/login.html">Login</a></li>
+        <li href="/contact.html"><a href="/contact.html">Contact</a></li>
+        <li href="/languages"><a href="/language.html">Language</a></li>
+        <li href="/my_account"><a href="/account.html">My Account</a></li>
+    </ul>
+</div>
+<header>
+    <h1><a href="/?tags=">Fantas-T-Shirts</a></h1>
+    <input type="text" id="search" placeholder="Search…"/>
+</header>
+<div id="header_logo">
+    <img src="img/Adobe Express - file.png" alt="Fantas-T-Shirts Logo">
+</div>
+
+<div class="contact">
+    <form class="contact-form" action="/contact" method="post">
+        <label for="your_e-mail">Your e-mail:</label>
+        <input type="email" name="email" id="your_e-mail" required>
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" id="subject" required>
+        <label for="your_message">Your message:</label>
+        <textarea name="message" id="your_message" rows="6" required></textarea>
+        <div class="g-recaptcha" data-sitekey="6LfeNV0sAAAAAAAFE8SzKOMrKBigjf07LqLpw3mM"></div>
+        <button type="submit">✉ Send message</button>
+    </form>
+</div>
+<footer>
+    © 2026 – Brewee Tristan
+</footer>
+</body>
+</html>
+</body>
+</html>

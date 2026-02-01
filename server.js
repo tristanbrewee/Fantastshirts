@@ -1,8 +1,17 @@
+require("dotenv").config();
+
 const express = require("express");
 const mysql = require("mysql2/promise");
+const nodemailer = require("nodemailer");
+const app = express();
+
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
 
 async function startServer() {
-    const app = express();
+
 
     const db = await mysql.createConnection({
         host: "localhost",
@@ -13,7 +22,75 @@ async function startServer() {
 
     console.log("✅ Verbonden met MySQL");
 
-    app.use(express.static("public"));
+    /* MAIL CONFIG */
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASS
+        }
+    });
+
+    /* CONTACT FORM */
+    app.post("/contact", async (req, res) => {
+        try {
+            if (!req.body) {
+                console.error("❌ req.body is undefined");
+                return res.status(400).json({ error: "No form data received" });
+            }
+
+            const {
+                email,
+                subject,
+                message,
+                "g-recaptcha-response": captcha
+            } = req.body;
+
+            console.log("BODY:", req.body);
+
+            if (!email || !subject || !message) {
+                return res.status(400).json({ error: "Missing fields" });
+            }
+
+            if (!captcha) {
+                return res.status(400).json({ error: "Captcha missing" });
+            }
+
+            // captcha verify
+            const response = await fetch(
+                "https://www.google.com/recaptcha/api/siteverify",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: `secret=${process.env.RECAPTCHA_SECRET}&response=${captcha}`
+                }
+            );
+
+            const captchaResult = await response.json();
+
+            if (!captchaResult.success) {
+                return res.status(403).json({ error: "Captcha failed" });
+            }
+
+            // mail
+            await transporter.sendMail({
+                from: `"Fantas-T-Shirts" <${process.env.MAIL_USER}>`,
+                to: "tristanbrewee@fantas-t-shirts.com",
+                replyTo: email,
+                subject: `[Contact] ${subject}`,
+                html: `
+                <p><strong>From:</strong> ${email}</p>
+                <p>${message.replace(/\n/g, "<br>")}</p>
+            `
+            });
+
+            res.json({ success: true });
+
+        } catch (err) {
+            console.error("❌ CONTACT ROUTE ERROR:", err);
+            res.status(500).json({ error: "Internal server error" });
+        }
+    });
 
     app.get("/product/:id", async (req, res) => {
         const id = req.params.id;
@@ -60,10 +137,6 @@ async function startServer() {
         }
     });
 
-    app.listen(3000, () =>
-        console.log("🚀 Server draait op http://localhost:3000")
-    );
-
     app.get("/images/:id", async (req, res) => {
         const id = req.params.id;
 
@@ -84,6 +157,10 @@ async function startServer() {
         }
     });
 }
+
+app.listen(3000, () => {
+    console.log("Server running on http://localhost:3000");
+});
 
 startServer().catch(err => {
     console.error("❌ Server fout:", err);
