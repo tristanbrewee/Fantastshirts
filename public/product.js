@@ -31,6 +31,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateBase();
 
+    const wrapper = document.querySelector(".shirt-wrapper");
+
+    wrapper.addEventListener("mousemove", (e) => {
+        const rect = wrapper.getBoundingClientRect();
+
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        wrapper.style.transformOrigin = `${x}% ${y}%`;
+        wrapper.style.transform = "scale(2)";
+    });
+
+    wrapper.addEventListener("mouseleave", () => {
+        wrapper.style.transformOrigin = "center center";
+        wrapper.style.transform = "scale(1)";
+    });
+
     function updatePrint() {
         if (!state.print) {
             console.error("Geen print path in state");

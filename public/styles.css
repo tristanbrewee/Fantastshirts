@@ -9,6 +9,24 @@
     --muted: #b8aa7a;
 }
 
+@media (max-width: 768px) {
+    .product-page {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ptions {
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .confirm-button {
+        flex: 1 1 100%;
+        margin-top: 30px;
+    }
+}
+
 #header_top {
     display: inline;
     font-size: 20px;
@@ -250,13 +268,40 @@ footer {
 
 .product-page {
     display: flex;
+    flex-wrap: wrap;
     gap: 40px;
     padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.product-preview {
+    flex: 0 0 350px;
 }
 
 .product-preview img {
     width: 350px;
     border-radius: 12px;
+}
+
+.product-options {
+    flex: 1 1 420px;
+    display: flex;
+    gap: 24px;
+
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.side-options {
+    flex: 0 1 180px;
+}
+
+.options-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
 }
 
 .product-options fieldset {
@@ -277,6 +322,11 @@ footer {
 .shirt-wrapper img {
     width: 100%;
     display: block;
+    transition: transform 0.15s ease;
+}
+
+.shirt-wrapper:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
 #shirtBase {
@@ -398,11 +448,22 @@ footer {
     background-color: #e8e52c;
 }
 
+.product-page {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+
+    align-items: flex-start;
+    justify-content: center;
+
+    flex-wrap: wrap;
+    max-width: 1200px;   /* ⬅️ belangrijk */
+    margin: 0 auto;      /* centreert pagina */
+}
+
 .color-options {
     display: flex;
     gap: 20px;
-
-    flex-direction: column;
 
     padding: 16px 18px;
     background: linear-gradient(180deg, #2f2a23, #26221c);
@@ -442,8 +503,11 @@ label {
 }
 
 .confirm-button {
+    flex: 1 1 220px;
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .confirm-btn {
@@ -510,3 +574,4 @@ label {
 .confirm-btn:hover::after {
     opacity: 1;
 }
+
