@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Portaal der Helden</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="header_top">
+        <ul>
+            <li href="/login.html"><a href="/login.html">Login</a></li>
+            <li href="/contact.html"><a href="/contact.html">Contact</a></li>
+            <li href="/languages"><a href="/language.html">Language</a></li>
+            <li href="/my_account"><a href="/account.html">My Account</a></li>
+        </ul>
+    </div>
+        <header>
+            <h1><a href="/?tags=">Fantas-T-Shirts</a></h1>
+            <input type="text" id="search" placeholder="Search…" />
+        </header>
+    <div id="header_logo">
+        <img src="img/Adobe Express - file.png" alt="Fantas-T-Shirts Logo" >
+    </div>
+
+<section class="auth-wrapper">
+
+    <div class="auth-card">
+
+        <div class="auth-tabs">
+            <button class="tab-btn active" onclick="showLogin()">Login</button>
+            <button class="tab-btn" onclick="showRegister()">Register</button>
+        </div>
+
+        <!-- LOGIN -->
+        <form id="loginForm" class="auth-form active">
+            <h2>Enter the portal</h2>
+
+            <label>e-mail</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <button formmethod="post" formaction="/login" type="submit" class="confirm-btn">Login</button>
+        </form>
+
+        <!-- REGISTER -->
+        <form id="registerForm" class="auth-form">
+            <h2>Join our squad</h2>
+
+            <label>E-mail</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <label>Confirm password</label>
+            <input type="password" name="confirmPassword" required>
+
+            <button formmethod="post" formaction="/register" type="submit" class="confirm-btn">Register</button>
+        </form>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Arcane Market — Alle rechten voorbehouden
+</footer>
+
+<script>
+function showLogin() {
+    document.getElementById("loginForm").classList.add("active");
+    document.getElementById("registerForm").classList.remove("active");
+    document.querySelectorAll(".tab-btn")[0].classList.add("active");
+    document.querySelectorAll(".tab-btn")[1].classList.remove("active");
+}
+
+function showRegister() {
+    document.getElementById("registerForm").classList.add("active");
+    document.getElementById("loginForm").classList.remove("active");
+    document.querySelectorAll(".tab-btn")[1].classList.add("active");
+    document.querySelectorAll(".tab-btn")[0].classList.remove("active");
+}
+</script>
+
+</body>
+</html>

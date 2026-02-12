@@ -4,8 +4,22 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 const nodemailer = require("nodemailer");
 const app = express();
+const loginRoutes = require("./routes/login");
+const session = require("express-session");
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
+app.use(session({
+    secret: "superSecretArcaneKey",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        httpOnly: true
+    }
+}));
+app.use("/", loginRoutes);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -15,8 +29,8 @@ async function startServer() {
 
     const db = await mysql.createConnection({
         host: "localhost",
-        user: process.env.DB_USER,          // pas aan
-        password: process.env.DB_PASS,          // pas aan
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS,
         database: "image_store"
     });
 
@@ -165,3 +179,18 @@ app.listen(3000, () => {
 startServer().catch(err => {
     console.error("❌ Server fout:", err);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
