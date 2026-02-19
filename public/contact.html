@@ -11,11 +11,13 @@
 </head>
 <body>
 <div id="header_top">
-    <ul>
-        <li href="/login.html"><a href="/login.html">Login</a></li>
+    <ul id="authMenu">
         <li href="/contact.html"><a href="/contact.html">Contact</a></li>
-        <li href="/languages"><a href="/language.html">Language</a></li>
-        <li href="/my_account"><a href="/account.html">My Account</a></li>
+
+        <li id="loginItem"><a href="/login.html">Login</a></li>
+        <li id="accountItem" style="display:none;"><a href="/account.html">My Account</a></li>
+        <li id="logoutItem" style="display:none;"><a href="#">Logout</a></li>
+
     </ul>
 </div>
 <header>
@@ -38,9 +40,13 @@
         <button type="submit">✉ Send message</button>
     </form>
 </div>
+
 <footer>
     © 2026 – Brewee Tristan
 </footer>
+
+<script src="/js/auth-ui.js"></script>
+
 </body>
 </html>
 </body>

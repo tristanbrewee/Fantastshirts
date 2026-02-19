@@ -18,6 +18,29 @@ const db = mysql.createPool({
     connectionLimit: 10
 });
 
+router.get("/me", (req, res) => {
+    if (!req.session.userId) {
+        return res.json({ loggedIn: false });
+    }
+
+    res.json({
+        loggedIn: true,
+        email: req.session.email
+    });
+});
+
+function requireAuth(req, res, next) {
+    if (!req.session.userId) {
+        return res.redirect("/login.html");
+    }
+    next();
+}
+
+router.get("/account-data", requireAuth, (req, res) => {
+    res.json({ email: req.session.email });
+});
+
+
 /* ========================= */
 /* LOGIN */
 /* ========================= */
@@ -62,9 +85,7 @@ router.post("/login", async (req, res) => {
         req.session.userId = user.id;
         req.session.email = user.email;
 
-        return res.json({
-            message: "Login successful"
-        });
+        return res.redirect("/");
 
     } catch (err) {
         console.error("Login error:", err);
