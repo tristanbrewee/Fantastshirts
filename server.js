@@ -10,6 +10,8 @@ const session = require("express-session");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(session({
     secret: "superSecretArcaneKey",
     resave: false,
@@ -19,9 +21,8 @@ app.use(session({
         httpOnly: true
     }
 }));
+
 app.use("/", loginRoutes);
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 app.use(express.static("public"));
 
 async function startServer() {

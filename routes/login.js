@@ -85,6 +85,8 @@ router.post("/login", async (req, res) => {
         req.session.userId = user.id;
         req.session.email = user.email;
 
+        console.log("SESSION AFTER LOGIN: ", req.session);
+
         return res.redirect("/");
 
     } catch (err) {
