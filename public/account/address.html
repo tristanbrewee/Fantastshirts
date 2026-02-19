@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        fantas-t-shirts: Address
+    </title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="text/javascript" src="/js/auth/ui.js"></script>
+    <script type="text/javascript" src="/routes/account.js"></script>
+</head>
+<body>
+
+<div id="header_top">
+    <ul id="authMenu">
+        <li href="/contact.html"><a href="/contact.html">Contact</a></li>
+
+        <li id="loginItem"><a href="/login.html">Login</a></li>
+        <li id="accountItem" style="display:none;"><a href="/account.html">My Account</a></li>
+        <li id="logoutItem" style="display:none;"><a href="#">Logout</a></li>
+
+    </ul>
+</div>
+<header>
+    <h1><a href="/?tags=">Fantas-T-Shirts</a></h1>
+    <input type="text" id="search" placeholder="Search…" />
+</header>
+<div id="header_logo">
+    <img src="../img/Adobe Express - file.png" alt="Fantas-T-Shirts Logo" >
+</div>
+
+<section class="account-wrapper">
+
+    <div class="account-card">
+
+        <h2>Edit Address</h2>
+
+        <form method="POST" action="/update-address" class="medieval-form">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Street</label>
+                    <input name="street" required>
+                </div>
+
+                <div class="form-group">
+                    <label>House number</label>
+                    <input name="house_number" required>
+                </div>
+
+                <div class="form-group">
+                    <label>City</label>
+                    <input name="city" required>
+                </div>
+
+                <div class="form-group">
+                    <label>State / Province</label>
+                    <input name="state">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Country</label>
+                    <input name="country" required>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="confirm-btn">Save Address</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+</body>
+</html>

@@ -36,10 +36,6 @@ function requireAuth(req, res, next) {
     next();
 }
 
-router.get("/account-data", requireAuth, (req, res) => {
-    res.json({ email: req.session.email });
-});
-
 
 /* ========================= */
 /* LOGIN */
