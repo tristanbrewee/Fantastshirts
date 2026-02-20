@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const productId = params.get("id");
 
+    const btn = document.getElementById("addToCart");
+
+    btn.dataset.id = productId;
+
     console.log("URL productId =", productId);
 
     if (!productId) {
@@ -86,5 +90,28 @@ document.addEventListener("DOMContentLoaded", () => {
             updateBase();
         }
     });
+    document.getElementById("addToCart")
+        .addEventListener("click", async () => {
+
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get("id");
+
+            const color = document.querySelector('input[name="color"]:checked')?.value;
+            const side = document.querySelector('input[name="side"]:checked')?.value;
+
+            if (!color || !side) {
+                alert("Select color and side first.");
+                return;
+            }
+
+            await fetch("/add-to-cart", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ id, color, side })
+            });
+
+            alert("Added to cart!");
+        });
 
 });

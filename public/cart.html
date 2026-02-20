@@ -2,13 +2,13 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Fantas-T-Shirts: My Account</title>
+  <title>Shopping Cart</title>
   <link rel="stylesheet" href="/styles.css">
-  <script src="/js/auth/ui.js" defer></script>
-  <script src="/account.js" defer></script>
+  <script src="./cart.js" defer></script>
 </head>
 <body>
 
+<body>
 <div id="header_top">
   <ul id="authMenu">
     <li><a href="/categories.html">Categories</a></li>
@@ -29,28 +29,19 @@
   <img src="img/Adobe Express - file.png" alt="Fantas-T-Shirts Logo" >
 </div>
 
-<section class="account-wrapper">
+<section class="cart-wrapper">
 
-  <!-- ADDRESS -->
-    <div class="account-card">
-        <h2>Address</h2>
+  <div id="cartItems"></div>
 
-        <div id="addressBlock"></div>
+  <div class="cart-total">
+    Total: €<span id="cartTotal">0</span>
+  </div>
 
-        <div class="address-actions">
-            <a href="/account/address.html" class="confirm-btn">Edit Address</a>
-        </div>
-    </div>
-
-  <!-- ORDERS -->
-  <div class="account-card">
-    <h2>Orders</h2>
-    <div id="ordersBlock"></div>
+  <div class="cart-actions">
+    <button class="confirm-btn">Proceed to Checkout</button>
   </div>
 
 </section>
-
-<script src="/global.js" defer></script>
 
 </body>
 </html>

@@ -23,12 +23,17 @@ router.get("/categories-data", async (req, res) => {
 
             row.tags
                 .split(";")
-                .map(t => t.trim().toLowerCase())
+                .map(t =>
+                    t
+                        .replace(/['",]/g, "")  // verwijdert ' en "
+                        .trim()
+                        .toLowerCase()
+                )
                 .filter(Boolean)
                 .forEach(tag => tagSet.add(tag));
         });
 
-        const uniqueTags = Array.from(tagSet).sort();
+        const uniqueTags = Array.from(tagSet).sort((a, b) => a.localeCompare(b));
 
         res.json(uniqueTags);
 

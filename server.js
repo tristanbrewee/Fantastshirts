@@ -7,6 +7,7 @@ const app = express();
 const loginRoutes = require("./routes/login");
 const accountRoutes = require("./routes/account");
 const categoriesRoutes = require("./routes/categories");
+const cartRoutes = require("./routes/cart");
 const session = require("express-session");
 
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +25,7 @@ app.use(session({
 app.use("/", loginRoutes);
 app.use("/", accountRoutes);
 app.use("/", categoriesRoutes);
+app.use("/", cartRoutes);
 app.use(express.static("public"));
 
 async function startServer() {
@@ -134,7 +136,7 @@ async function startServer() {
 
                 const conditions = parts
                     .map(() => "LOWER(tags) LIKE ?")
-                    .join(" AND ");
+                    .join(" OR ");
 
                 const values = parts.map(t => `%${t}%`);
 
