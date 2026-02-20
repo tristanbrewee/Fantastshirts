@@ -15,11 +15,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div class="cart-item">
         <img src="/${item.path}">
         <div>
-            <strong>${item.filename}</strong><br>
-            Color: ${item.color}<br>
-            Side: ${item.side}
+            <strong>${item.filename}</strong>
+            <div class="cart-meta">
+                Color: ${item.color}<br>
+                Side: ${item.side}
+            </div>
         </div>
-        <div>€${item.price}</div>
+        <div>€${Number(item.price).toFixed(2)}</div>
         <div>
             <input type="number" min="1" value="${item.quantity}"
                    data-id="${item.id}"
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             data-id="${item.id}"
             data-color="${item.color}"
             data-side="${item.side}"
-            class="remove-btn">X</button>
+            class="remove-btn">✕</button>
     </div>
 `).join("");
 
