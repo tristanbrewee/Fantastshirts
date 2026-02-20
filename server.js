@@ -134,7 +134,7 @@ async function startServer() {
 
                 const conditions = parts
                     .map(() => "LOWER(tags) LIKE ?")
-                    .join(" AND ");
+                    .join(" OR ");
 
                 const values = parts.map(t => `%${t}%`);
 
