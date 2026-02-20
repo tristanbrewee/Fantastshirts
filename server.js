@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const app = express();
 const loginRoutes = require("./routes/login");
 const accountRoutes = require("./routes/account");
+const categoriesRoutes = require("./routes/categories");
 const session = require("express-session");
 
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +23,7 @@ app.use(session({
 
 app.use("/", loginRoutes);
 app.use("/", accountRoutes);
+app.use("/", categoriesRoutes);
 app.use(express.static("public"));
 
 async function startServer() {

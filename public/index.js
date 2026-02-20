@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // 🔹 tag uit pagina-URL halen (?tag=osrs)
     const params = new URLSearchParams(window.location.search);
     const tags = params.get("tags");
-    const id = params.get("id");
 
     const url = tags ? `/data?tags=${encodeURIComponent(tags)}` : "/data";
 

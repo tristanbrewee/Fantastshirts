@@ -11,7 +11,8 @@
 
 <div id="header_top">
   <ul id="authMenu">
-    <li href="/contact.html"><a href="/contact.html">Contact</a></li>
+    <li><a href="/categories.html">Categories</a></li>
+    <li><a href="/contact.html">Contact</a></li>
 
     <li id="loginItem"><a href="/login.html">Login</a></li>
     <li id="accountItem" style="display:none;"><a href="/account.html">My Account</a></li>
@@ -30,11 +31,15 @@
 <section class="account-wrapper">
 
   <!-- ADDRESS -->
-  <div class="account-card">
-    <h2>Address</h2>
-    <div id="addressBlock"></div>
-    <a href="/account/address.html" class="confirm-btn">Edit Address</a>
-  </div>
+    <div class="account-card">
+        <h2>Address</h2>
+
+        <div id="addressBlock"></div>
+
+        <div class="address-actions">
+            <a href="/account/address.html" class="confirm-btn">Edit Address</a>
+        </div>
+    </div>
 
   <!-- ORDERS -->
   <div class="account-card">
@@ -43,6 +48,8 @@
   </div>
 
 </section>
+
+<script src="/global.js" defer></script>
 
 </body>
 </html>

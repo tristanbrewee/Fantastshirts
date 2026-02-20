@@ -845,56 +845,70 @@ label {
 }
 
 /* ============================= */
-/* ADDRESS DISPLAY STYLING */
+/* CLEAN ADDRESS STYLE */
 /* ============================= */
 
 .address-display {
     margin-top: 15px;
-    padding: 18px 20px;
+    padding: 20px;
     background: linear-gradient(180deg, #2f2a23, #26221c);
     border: 1px solid rgba(201,162,77,0.25);
     border-radius: 14px;
     box-shadow:
             0 10px 30px rgba(0,0,0,0.6),
             inset 0 0 20px rgba(201,162,77,0.05);
-    transition: 0.25s ease;
-}
-
-.address-display:hover {
-    box-shadow:
-            0 0 25px var(--accent-glow),
-            0 15px 40px rgba(0,0,0,0.7);
 }
 
 .address-line {
-    font-size: 0.95rem;
-    color: var(--muted);
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--text);
+    letter-spacing: 1px;
     margin-bottom: 6px;
 }
 
-.address-line.main-line {
+.address-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ============================= */
+/* CATEGORIES STYLE */
+/* ============================= */
+
+.categories-wrapper {
+    max-width: 900px;
+    margin: 50px auto;
+}
+
+.categories-card {
+    background: linear-gradient(180deg, #332d25, #26221c);
+    border: 1px solid rgba(201,162,77,0.25);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.7);
+}
+
+.categories-card label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
     font-family: 'Cinzel', serif;
-    font-size: 1.1rem;
-    color: var(--accent);
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-}
-
-.address-line.country {
-    margin-top: 8px;
-    font-weight: bold;
+    font-size: 1rem;
     color: var(--text);
+    cursor: pointer;
 }
 
-.address-empty {
-    padding: 18px;
-    border-radius: 12px;
-    background: rgba(201,162,77,0.05);
-    border: 1px dashed rgba(201,162,77,0.3);
+.categories-card input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 18px;
+    height: 18px;
 }
 
-.muted-text {
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-top: 6px;
+.categories-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
 }

@@ -19,9 +19,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (!addr || (!addr.street && !addr.city)) {
             addressBlock.innerHTML = `
-        <div class="address-empty">
-            <p>No address bound to your scroll yet.</p>
-            <p class="muted-text">Click "Edit Address" to inscribe your location.</p>
+        <div class="address-display">
+            <div class="address-line">
+                No address saved yet.
+            </div>
         </div>
     `;
             return;
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         addressBlock.innerHTML = `
     <div class="address-display">
-        <div class="address-line main-line">
+        <div class="address-line">
             ${addr.street || ""} ${addr.house_number || ""}
         </div>
         <div class="address-line">
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="address-line">
             ${addr.state || ""}
         </div>
-        <div class="address-line country">
+        <div class="address-line">
             ${addr.country || ""}
         </div>
     </div>
