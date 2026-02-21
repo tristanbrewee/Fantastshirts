@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/checkout.js" defer></script>
+</head>
+
+<body>
+<div id="header_top">
+  <ul id="authMenu">
+    <li><a href="/categories.html">Categories</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+
+    <li id="loginItem"><a href="/login.html">Login</a></li>
+    <li id="accountItem" style="display:none;"><a href="/account.html">My Account</a></li>
+    <li id="logoutItem" style="display:none;"><a href="#">Logout</a></li>
+
+    <li><a href="/cart.html">Shopping Cart</a></li>
+  </ul>
+</div>
+<header>
+  <h1><a href="/?tags=">Fantas-T-Shirts</a></h1>
+  <input type="text" id="search" placeholder="Search…" />
+</header>
+<div id="header_logo">
+  <img src="img/Adobe Express - file.png" alt="Fantas-T-Shirts Logo" >
+</div>
+
+<section class="account-wrapper" id="checkoutContainer">
+
+  <div class="account-card">
+    <h2>Order Summary</h2>
+
+    <div id="orderSummary"></div>
+
+    <div class="cart-total">
+      Total: €<span id="checkoutTotal">0</span>
+    </div>
+
+    <div id="checkoutActions" class="cart-actions"></div>
+
+    <div id="bankInfo" style="display:none; margin-top:20px;">
+      <h3>Bank Transfer Details</h3>
+      <p><strong>IBAN:</strong> BE12 3456 7890 1234</p>
+      <p><strong>Name:</strong> Fantas-T-Shirts</p>
+      <p><strong>Reference:</strong> ORDER-<span id="orderRef"></span></p>
+    </div>
+  </div>
+
+</section>
+
+<script src="/js/auth/ui.js"></script>
+
+</body>
+</html>

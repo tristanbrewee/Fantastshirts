@@ -88,12 +88,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const data = await res.json();
 
-                if (!data.success) {
+                // 🔥 BELANGRIJK
+                if (!res.ok) {
+
+                    if (data.message === "NO_VALID_ADDRESS") {
+                        alert("Please add a valid address before proceeding.");
+                        window.location.href = "/account.html?error=address_required";
+                        return;
+                    }
+
                     this.textContent = "Checkout failed";
                     this.disabled = false;
                     return;
                 }
 
+                // Alleen als checkout écht success was
                 this.textContent = "Order Created ✓";
 
                 document.getElementById("orderRef")

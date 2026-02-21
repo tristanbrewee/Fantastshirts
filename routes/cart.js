@@ -125,6 +125,31 @@ router.post("/checkout", async (req, res) => {
         return res.status(401).json({ message: "Login required" });
     }
 
+    // 🔎 Check if user has valid address
+    const [userRows] = await db.execute(
+        `SELECT street, house_number, city, state, country 
+     FROM users 
+     WHERE id = ?`,
+        [userId]
+    );
+
+    const user = userRows[0];
+
+    const hasValidAddress =
+        user &&
+        user.street && user.street.trim() !== "" &&
+        user.house_number && user.house_number.trim() !== "" &&
+        user.city && user.city.trim() !== "" &&
+        user.country && user.country.trim() !== "";
+
+    if (!hasValidAddress) {
+        console.log("NO VALID ADDRESS FOR USER:", userId);
+
+        return res.status(400).json({
+            message: "NO_VALID_ADDRESS"
+        });
+    }
+
     const ids = cart.map(i => i.id);
 
     const [products] = await db.query(
