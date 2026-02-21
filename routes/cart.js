@@ -111,4 +111,142 @@ router.post("/remove-from-cart", (req, res) => {
     res.json({ success: true });
 });
 
+router.post("/checkout", async (req, res) => {
+
+    const cart = req.session.cart || [];
+
+    if (cart.length === 0) {
+        return res.status(400).json({ message: "Cart is empty" });
+    }
+
+    const userId = req.session.userId;
+
+    if (!userId) {
+        return res.status(401).json({ message: "Login required" });
+    }
+
+    const ids = cart.map(i => i.id);
+
+    const [products] = await db.query(
+        `SELECT id, price FROM images WHERE id IN (?)`,
+        [ids]
+    );
+
+    let total = 0;
+
+    for (const item of cart) {
+        const product = products.find(p => p.id === item.id);
+        total += Number(product.price) * item.quantity;
+    }
+
+    const [orderResult] = await db.execute(
+        `INSERT INTO orders (user_id, total) VALUES (?, ?)`,
+        [userId, total]
+    );
+
+    const orderId = orderResult.insertId;
+
+    for (const item of cart) {
+        const product = products.find(p => p.id === item.id);
+
+        await db.execute(
+            `INSERT INTO order_items 
+            (order_id, product_id, color, side, quantity, price)
+            VALUES (?, ?, ?, ?, ?, ?)`,
+            [
+                orderId,
+                item.id,
+                item.color,
+                item.side,
+                item.quantity,
+                product.price
+            ]
+        );
+    }
+
+    req.session.cart = [];
+
+    res.json({
+        success: true,
+        orderId,
+        total
+    });
+});
+
+router.post("/guest-checkout", async (req, res) => {
+
+    const cart = req.session.cart || [];
+
+    if (cart.length === 0) {
+        return res.status(400).json({ message: "Cart empty" });
+    }
+
+    const {
+        email,
+        street,
+        house_number,
+        city,
+        state,
+        country
+    } = req.body;
+
+    const ids = cart.map(i => i.id);
+
+    const [products] = await db.query(
+        `SELECT id, price FROM images WHERE id IN (?)`,
+        [ids]
+    );
+
+    let total = 0;
+
+    for (const item of cart) {
+        const product = products.find(p => p.id === item.id);
+        total += Number(product.price) * item.quantity;
+    }
+
+    const [orderResult] = await db.execute(
+        `INSERT INTO orders
+        (user_id, total, guest_email, street, house_number, city, state, country)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+            null,
+            total,
+            email,
+            street,
+            house_number,
+            city,
+            state,
+            country
+        ]
+    );
+
+    const orderId = orderResult.insertId;
+
+    for (const item of cart) {
+        const product = products.find(p => p.id === item.id);
+
+        await db.execute(
+            `INSERT INTO order_items
+            (order_id, product_id, color, side, quantity, price)
+            VALUES (?, ?, ?, ?, ?, ?)`,
+            [
+                orderId,
+                item.id,
+                item.color,
+                item.side,
+                item.quantity,
+                product.price
+            ]
+        );
+    }
+
+    req.session.cart = [];
+
+    res.json({
+        success: true,
+        orderId,
+        total
+    });
+});
+
 module.exports = router;

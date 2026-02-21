@@ -62,6 +62,39 @@
     }
 }
 
+@media (max-width: 700px) {
+    .checkout-item {
+        grid-template-columns: 80px 1fr;
+        grid-template-areas:
+            "img info"
+            "img price";
+    }
+
+    .checkout-img {
+        grid-area: img;
+    }
+
+    .checkout-info {
+        grid-area: info;
+    }
+
+    .checkout-price {
+        grid-area: price;
+        justify-self: start;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-btn {
+        width: 100%;
+    }
+}
+
 #header_top {
     display: inline;
     font-size: 20px;
@@ -1074,4 +1107,142 @@ label {
 .cart-actions {
     margin-top: 25px;
     text-align: right;
+}
+
+.account-card h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+}
+
+/* ========================= */
+/* CHECKOUT ITEMS */
+/* ========================= */
+
+.checkout-item {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    align-items: center;
+    gap: 20px;
+
+    padding: 20px;
+    margin-bottom: 20px;
+
+    background: linear-gradient(180deg, #332d25, #26221c);
+    border-radius: 12px;
+    border: 1px solid rgba(201,162,77,0.25);
+
+    box-shadow:
+            0 10px 30px rgba(0,0,0,0.6),
+            inset 0 0 20px rgba(201,162,77,0.05);
+}
+
+.checkout-img {
+    width: 90px;
+    border-radius: 8px;
+    background: #1a1814;
+    padding: 6px;
+}
+
+.checkout-info strong {
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.checkout-meta {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+.checkout-price {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+
+/* ========================= */
+/* GUEST CHECKOUT STYLING */
+/* ========================= */
+
+.checkout-card {
+    max-width: 700px;
+    margin: 50px auto;
+}
+
+.checkout-title {
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    text-shadow: 0 0 12px rgba(201,162,77,0.25);
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    background: #1a1814;
+    border: 1px solid rgba(201,162,77,0.3);
+    border-radius: 10px;
+    padding: 12px;
+
+    color: var(--text);
+    font-size: 0.95rem;
+
+    transition: 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Submit button spacing */
+.checkout-btn {
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+/* Bank info panel */
+.bank-panel {
+    margin-top: 30px;
+    padding: 25px;
+
+    background: linear-gradient(180deg, #2f2a23, #26221c);
+    border-radius: 1rem;
+    border: 1px solid rgba(201,162,77,0.35);
+
+    box-shadow:
+            0 0 25px rgba(201,162,77,0.2),
+            inset 0 0 25px rgba(201,162,77,0.05);
+}
+
+.bank-panel h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+    margin-bottom: 15px;
 }

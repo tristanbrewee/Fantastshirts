@@ -74,4 +74,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
+    document.getElementById("goToCheckout")
+        .addEventListener("click", () => {
+            window.location.href = "/checkout.html";
+        });
 });
