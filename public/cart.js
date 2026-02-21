@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             <strong>${item.filename}</strong>
             <div class="cart-meta">
                 Color: ${item.color}<br>
-                Side: ${item.side}
+                Side: ${item.side}<br>
+                Size: ${item.size}
             </div>
         </div>
         <div>€${Number(item.price).toFixed(2)}</div>

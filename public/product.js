@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const color = document.querySelector('input[name="color"]:checked')?.value;
             const side = document.querySelector('input[name="side"]:checked')?.value;
+            const size = document.querySelector('input[name="size"]:checked')?.value;
 
             if (!color || !side) {
                 alert("Select color and side first.");
@@ -108,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
-                body: JSON.stringify({ id, color, side })
+                body: JSON.stringify({ id, color, side, size })
             });
 
             alert("Added to cart!");

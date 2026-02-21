@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="checkout-meta">
                 Color: ${item.color}<br>
                 Side: ${item.side}<br>
+                Size: ${item.size}<br>
                 Qty: ${item.quantity}
             </div>
         </div>

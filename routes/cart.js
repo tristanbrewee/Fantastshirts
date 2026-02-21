@@ -40,6 +40,7 @@ router.get("/cart-data", async (req, res) => {
             ...product,
             color: cartItem.color,
             side: cartItem.side,
+            size: cartItem.size,
             quantity: cartItem.quantity,
             subtotal: Number(product.price) * cartItem.quantity
         });
@@ -53,7 +54,7 @@ router.get("/cart-data", async (req, res) => {
 // ➕ Add to cart
 router.post("/add-to-cart", (req, res) => {
 
-    const { id, color, side } = req.body;
+    const { id, color, side, size } = req.body;
 
     if (!req.session.cart) {
         req.session.cart = [];
@@ -62,7 +63,8 @@ router.post("/add-to-cart", (req, res) => {
     const existing = req.session.cart.find(item =>
         item.id === id &&
         item.color === color &&
-        item.side === side
+        item.side === side &&
+        item.size === size
     );
 
     if (existing) {
@@ -72,6 +74,7 @@ router.post("/add-to-cart", (req, res) => {
             id: Number(id),
             color,
             side,
+            size,
             quantity: 1
         });
     }
@@ -84,12 +87,13 @@ router.post("/add-to-cart", (req, res) => {
 // 🔁 Update quantity
 router.post("/update-cart", (req, res) => {
 
-    const { id, color, side, quantity } = req.body;
+    const { id, color, side, size, quantity } = req.body;
 
     const item = req.session.cart.find(i =>
         i.id == id &&
         i.color === color &&
-        i.side === side
+        i.side === side &&
+        i.size === size
     );
 
     if (item) {
@@ -102,10 +106,10 @@ router.post("/update-cart", (req, res) => {
 // ❌ Remove
 router.post("/remove-from-cart", (req, res) => {
 
-    const { id, color, side } = req.body;
+    const { id, color, side, size } = req.body;
 
     req.session.cart = req.session.cart.filter(i =>
-        !(i.id == id && i.color === color && i.side === side)
+        !(i.id == id && i.color === color && i.side === side && i.size === size)
     );
 
     res.json({ success: true });
@@ -176,13 +180,14 @@ router.post("/checkout", async (req, res) => {
 
         await db.execute(
             `INSERT INTO order_items 
-            (order_id, product_id, color, side, quantity, price)
-            VALUES (?, ?, ?, ?, ?, ?)`,
+            (order_id, product_id, color, side, size, quantity, price)
+            VALUES (?, ?, ?, ?, ?, ?, ?)`,
             [
                 orderId,
                 item.id,
                 item.color,
                 item.side,
+                item.size,
                 item.quantity,
                 product.price
             ]
@@ -252,13 +257,14 @@ router.post("/guest-checkout", async (req, res) => {
 
         await db.execute(
             `INSERT INTO order_items
-            (order_id, product_id, color, side, quantity, price)
-            VALUES (?, ?, ?, ?, ?, ?)`,
+            (order_id, product_id, color, side, size, quantity, price)
+            VALUES (?, ?, ?, ?, ?, ?, ?)`,
             [
                 orderId,
                 item.id,
                 item.color,
                 item.side,
+                item.size,
                 item.quantity,
                 product.price
             ]
