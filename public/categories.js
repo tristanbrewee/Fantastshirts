@@ -1,47 +1,61 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    try {
-        const res = await fetch("/categories-data");
-        const tags = await res.json();
+    const categories = [
+        "Avatar",
+        "Samurai Jack",
+        "The Lord of the Rings",
+        "World of Warcraft",
+        "Harry Potter",
+        "PowerPuff Girls",
+        "David Bowie",
+        "Conan The Barbarian",
+        "Spongebob Squarepants",
+        "Game of Thrones",
+        "The Dark Crystal",
+        "Oldschool Runescape",
+        "Star Wars",
+        "Fantast-T-Shirt",
+        "Ganja",
+        "Jimmy Neutron",
+        "The Hunger Games",
+        "Labyrinth",
+        "Crystal Meth",
+        "Monty Python and the Holy Grail",
+        "Pan's Labyrinth",
+        "Pirates of the Caribbean",
+        "Spirited Away",
+        "Wizard of Oz"
+    ];
 
-        const container = document.getElementById("categoriesList");
+    const container = document.getElementById("categoriesList");
 
-        if (!tags || tags.length === 0) {
-            container.innerHTML = "<p>No categories found.</p>";
-            return;
-        }
+    // Sorteer alfabetisch
+    categories.sort((a, b) => a.localeCompare(b));
 
-        let html = "";
+    container.innerHTML = categories.map(cat => `
+        <label class="category-item">
+            <input 
+                type="checkbox" 
+                name="category" 
+                value="${cat.toLowerCase()}"
+            >
+            ${cat}
+        </label>
+    `).join("");
 
-        tags.forEach(tag => {
-            html += `
-                <label>
-                    <input type="checkbox" value="${tag}">
-                    ${tag}
-                </label>
-            `;
+    // Apply Filters
+    document.getElementById("categoriesForm")
+        .addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            const selected = [...document.querySelectorAll('input[name="category"]:checked')]
+                .map(cb => cb.value.toLowerCase());
+
+            if (selected.length === 0) return;
+
+            // OR-filter (zoals je search)
+            window.location.href =
+                `/?tags=${encodeURIComponent(selected.join(","))}`;
         });
-
-        container.innerHTML = html;
-
-    } catch (err) {
-        console.error("Categories error:", err);
-    }
-
-    // Submit handler
-    const form = document.getElementById("categoriesForm");
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const selected = Array.from(
-            form.querySelectorAll("input[type='checkbox']:checked")
-        ).map(cb => cb.value);
-
-        if (selected.length === 0) return;
-
-        window.location.href =
-            `/?tags=${encodeURIComponent(selected.join(","))}`;
-    });
-
 });
