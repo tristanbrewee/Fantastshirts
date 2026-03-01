@@ -1246,3 +1246,18 @@ label {
     color: var(--accent);
     margin-bottom: 15px;
 }
+
+.payment-methods {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(180deg, #2f2a23, #26221c);
+    border: 1px solid rgba(201,162,77,0.25);
+    border-radius: 12px;
+}
+
+.payment-methods label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--muted);
+    cursor: pointer;
+}

@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "The Dark Crystal",
         "Oldschool Runescape",
         "Star Wars",
-        "Fantast-T-Shirt",
+        "Fantas-T-Shirt",
         "Ganja",
         "Jimmy Neutron",
         "The Hunger Games",

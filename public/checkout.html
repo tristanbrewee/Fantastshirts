@@ -5,6 +5,7 @@
   <title>Checkout</title>
   <link rel="stylesheet" href="/styles.css">
   <script src="/checkout.js" defer></script>
+  <script src="/js/auth/ui.js" defer></script>
 </head>
 
 <body>
@@ -35,6 +36,32 @@
 
     <div id="orderSummary"></div>
 
+    <div class="payment-methods">
+
+      <h3>Select Payment Method</h3>
+
+      <label>
+        <input type="radio" name="paymentMethod" value="bank" required>
+        Bank Transfer
+      </label>
+
+      <label>
+        <input type="radio" name="paymentMethod" value="visa">
+        Visa
+      </label>
+
+      <label>
+        <input type="radio" name="paymentMethod" value="paypal">
+        PayPal
+      </label>
+
+      <label>
+        <input type="radio" name="paymentMethod" value="test">
+        Free Test Payment (Dev Only)
+      </label>
+
+    </div>
+
     <div class="cart-total">
       Total: €<span id="checkoutTotal">0</span>
     </div>
@@ -43,15 +70,13 @@
 
     <div id="bankInfo" style="display:none; margin-top:20px;">
       <h3>Bank Transfer Details</h3>
-      <p><strong>IBAN:</strong> BE12 3456 7890 1234</p>
+      <p><strong>IBAN:</strong> BE38 0689 5854 8872</p>
       <p><strong>Name:</strong> Fantas-T-Shirts</p>
       <p><strong>Reference:</strong> ORDER-<span id="orderRef"></span></p>
     </div>
   </div>
 
 </section>
-
-<script src="/js/auth/ui.js"></script>
 
 </body>
 </html>

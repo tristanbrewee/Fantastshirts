@@ -79,38 +79,45 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("confirmCheckout")
             .addEventListener("click", async function () {
 
+                // 🔎 Haal geselecteerde betaalmethode op
+                const selectedMethod = document.querySelector(
+                    'input[name="paymentMethod"]:checked'
+                )?.value;
+
+                if (!selectedMethod) {
+                    alert("Please select a payment method.");
+                    return;
+                }
+
                 this.disabled = true;
                 this.textContent = "Processing...";
 
                 const res = await fetch("/checkout", {
                     method: "POST",
-                    credentials: "include"
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify({
+                        paymentMethod: selectedMethod
+                    })
                 });
 
                 const data = await res.json();
 
-                // 🔥 BELANGRIJK
                 if (!res.ok) {
-
-                    if (data.message === "NO_VALID_ADDRESS") {
-                        alert("Please add a valid address before proceeding.");
-                        window.location.href = "/account.html?error=address_required";
-                        return;
-                    }
-
-                    this.textContent = "Checkout failed";
+                    alert("Checkout failed");
                     this.disabled = false;
+                    this.textContent = "Proceed to Payment";
                     return;
                 }
 
-                // Alleen als checkout écht success was
-                this.textContent = "Order Created ✓";
-
-                document.getElementById("orderRef")
-                    .textContent = data.orderId;
-
-                document.getElementById("bankInfo")
-                    .style.display = "block";
+                // 🔥 Redirect op basis van betaling
+                if (data.paymentStatus === "paid") {
+                    window.location.href =
+                        `/payment-success.html?order=${data.orderId}`;
+                } else {
+                    window.location.href =
+                        `/payment-pending.html?order=${data.orderId}`;
+                }
             });
     }
 
@@ -135,4 +142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 window.location.href = "/guest-checkout.html";
             });
     }
+
+
 });
+
